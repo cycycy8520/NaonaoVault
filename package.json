@@ -1,0 +1,56 @@
+{
+  "name": "naonao-vault",
+  "version": "1.0.0",
+  "description": "NaonaoVault - 安全信息记录工具，记录密码、API Key 与各类敏感凭据",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "dev": "npm run dev:renderer & npm run dev:main",
+    "dev:main": "tsc -p tsconfig.main.json --watch",
+    "dev:renderer": "vite",
+    "build": "npm run build:main && npm run build:renderer",
+    "build:main": "tsc -p tsconfig.main.json",
+    "build:renderer": "vite build",
+    "test": "vitest run",
+    "start": "electron .",
+    "pack": "node scripts/run-electron-builder.cjs --dir",
+    "dist": "node scripts/run-electron-builder.cjs",
+    "portable:clean": "node scripts/build-clean-portable.cjs"
+  },
+  "keywords": [
+    "password-manager",
+    "secure-vault",
+    "password",
+    "api-key",
+    "encryption"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "crypto-js": "^4.2.0",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "uuid": "^9.0.1",
+    "zustand": "^4.5.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^20.11.20",
+    "@types/react": "^18.2.58",
+    "@types/react-dom": "^18.2.19",
+    "@types/uuid": "^9.0.8",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "electron": "29.1.0",
+    "electron-builder": "^24.12.0",
+    "fill-range": "^7.1.1",
+    "playwright": "^1.58.2",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vitest": "^4.0.18"
+  }
+}

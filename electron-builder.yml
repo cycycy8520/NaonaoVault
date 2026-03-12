@@ -1,0 +1,32 @@
+appId: com.securevault.app
+productName: NaonaoVault
+artifactName: ${productName}-${version}-${arch}.${ext}
+asar: true
+asarUnpack:
+  - node_modules/better-sqlite3/build/Release/*.node
+npmRebuild: false
+
+directories:
+  output: release
+
+files:
+  - dist/**/*
+  - package.json
+
+win:
+  icon: icon.ico
+  target:
+    - target: dir
+      arch:
+        - x64
+    - target: nsis
+      arch:
+        - x64
+
+nsis:
+  artifactName: ${productName}-${version}-setup-${arch}.${ext}
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  uninstallDisplayName: NaonaoVault
