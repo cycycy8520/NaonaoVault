@@ -257,7 +257,7 @@ const SettingsModal = ({ onDataChanged, onSecuritySettingsChanged }: SettingsMod
   };
 
   return (
-    <div className="modal-overlay" onClick={closeModal}>
+    <div className="modal-overlay">
       <div
         className="w-full max-w-4xl max-h-[92vh] overflow-hidden bg-[var(--color-bg-elevated)] rounded-[var(--radius-xl)] shadow-[var(--shadow-xl)] animate-scaleIn"
         onClick={(event) => event.stopPropagation()}
@@ -399,12 +399,15 @@ const SettingsModal = ({ onDataChanged, onSecuritySettingsChanged }: SettingsMod
                 <input value={syncSettings.branch} onChange={(event) => setSyncSettings((state) => ({ ...state, branch: event.target.value }))} className={inputClassName} placeholder="main" />
               </Field>
               <Field label="本地工作目录">
-                <input value={syncSettings.localDir} onChange={(event) => setSyncSettings((state) => ({ ...state, localDir: event.target.value }))} className={inputClassName} placeholder="D:\\secure-vault-sync" />
+                <input value={syncSettings.localDir} onChange={(event) => setSyncSettings((state) => ({ ...state, localDir: event.target.value }))} className={inputClassName} placeholder=".\\git-sync 或 D:\\secure-vault-sync" />
               </Field>
               <Field label="快照文件名">
                 <input value={syncSettings.snapshotFileName} onChange={(event) => setSyncSettings((state) => ({ ...state, snapshotFileName: event.target.value }))} className={inputClassName} placeholder="vault.svlt" />
               </Field>
             </div>
+            <p className="text-xs text-[var(--color-text-tertiary)] mt-3">
+              远程仓库地址请填写 GitHub / Gitee 仓库地址，或另一个专门用于同步的仓库目录；不要和“本地工作目录”填成同一个文件夹。本地工作目录支持相对路径，例如 `.\git-sync`。在干净便携包里，它会落到 `user-data\git-sync`。
+            </p>
 
             <div className="flex gap-3 mt-4">
               <button onClick={saveSyncSettings} className={primaryButtonClassName} disabled={isSavingSync}>
@@ -420,7 +423,10 @@ const SettingsModal = ({ onDataChanged, onSecuritySettingsChanged }: SettingsMod
             <div className="mt-4 p-3 rounded-[var(--radius-md)] bg-[var(--color-bg-secondary)] text-sm text-[var(--color-text-secondary)] space-y-1">
               <div>最近运行：{syncStatus.lastRunAt ? new Date(syncStatus.lastRunAt).toLocaleString('zh-CN') : '未运行'}</div>
               <div>最近成功：{syncStatus.lastSuccessAt ? new Date(syncStatus.lastSuccessAt).toLocaleString('zh-CN') : '暂无'}</div>
-              <div>最近错误：{syncStatus.lastError || '无'}</div>
+              <div>
+                <div>最近错误：</div>
+                <div className="mt-1 whitespace-pre-line break-all">{syncStatus.lastError || '无'}</div>
+              </div>
             </div>
           </section>
         </div>

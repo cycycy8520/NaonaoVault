@@ -75,7 +75,7 @@ const ImportPreviewModal = ({ preview, onClose, onConfirm }: ImportPreviewModalP
   };
 
   return (
-    <div className="modal-overlay z-[calc(var(--z-modal)+10)]" onClick={onClose}>
+    <div className="modal-overlay z-[calc(var(--z-modal)+10)]">
       <div
         className="w-full max-w-5xl max-h-[92vh] overflow-hidden bg-[var(--color-bg-elevated)] rounded-[var(--radius-xl)] shadow-[var(--shadow-xl)] animate-scaleIn"
         onClick={(event) => event.stopPropagation()}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Lock, Eye, EyeOff } from 'lucide-react'
+import { Lock, Eye, EyeOff, X } from 'lucide-react'
 
 interface UnlockScreenProps {
   onUnlock: () => void
@@ -39,6 +39,24 @@ const UnlockScreen = ({ onUnlock }: UnlockScreenProps) => {
   
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[var(--color-bg-secondary)]">
+      <button
+        type="button"
+        onClick={() => window.api.closeWindow()}
+        className="
+          absolute top-4 right-4
+          w-10 h-10 flex items-center justify-center
+          rounded-full
+          bg-[var(--color-bg-elevated)]
+          border border-[var(--color-border)]
+          text-[var(--color-text-secondary)]
+          hover:bg-[var(--color-bg-tertiary)]
+          hover:text-[var(--color-text-primary)]
+          transition-colors duration-200
+        "
+        aria-label="关闭窗口"
+      >
+        <X size={18} />
+      </button>
       <div 
         className="
           w-full max-w-sm

@@ -166,7 +166,7 @@ const SmartCaptureModal = () => {
   };
 
   return (
-    <div className="modal-overlay" onClick={closeSmartCapture}>
+    <div className="modal-overlay">
       <div
         className="w-full max-w-6xl max-h-[92vh] bg-[var(--color-bg-elevated)] rounded-[var(--radius-xl)] shadow-[var(--shadow-xl)] overflow-hidden animate-scaleIn"
         onClick={(event) => event.stopPropagation()}

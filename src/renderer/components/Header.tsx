@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   Bot,
+  Github,
   LayoutGrid,
   LayoutList,
   List,
@@ -27,6 +28,8 @@ const viewModes: { id: ViewMode; icon: ReactNode; label: string }[] = [
   { id: 'table', icon: <Table size={16} />, label: '表格视图' },
 ];
 
+const PROJECT_REPOSITORY_URL = 'https://github.com/cycycy8520/NaonaoVault';
+
 const Header = ({ onSearch, onLockVault }: HeaderProps) => {
   const {
     searchQuery,
@@ -40,6 +43,7 @@ const Header = ({ onSearch, onLockVault }: HeaderProps) => {
     openSmartCapture,
     openAssistant,
     openSettingsModal,
+    showToast,
   } = useStore();
 
   const [localQuery, setLocalQuery] = useState(searchQuery);
@@ -76,6 +80,19 @@ const Header = ({ onSearch, onLockVault }: HeaderProps) => {
     searchInputRef.current?.focus();
   };
 
+  const openProjectRepository = () => {
+    void (async () => {
+      try {
+        const result = await window.api.openExternal(PROJECT_REPOSITORY_URL);
+        if (!result.success) {
+          throw new Error(result.error || '打开 GitHub 链接失败');
+        }
+      } catch (error) {
+        showToast(error instanceof Error ? error.message : '打开 GitHub 链接失败', 'error');
+      }
+    })();
+  };
+
   return (
     <header className="header h-14 flex items-center justify-between px-4 gap-4 bg-[var(--color-bg-secondary)] border-b border-[var(--color-border)]">
       <div className="min-w-0">
@@ -88,6 +105,15 @@ const Header = ({ onSearch, onLockVault }: HeaderProps) => {
       </div>
 
       <div className="flex items-center gap-2 shrink-0">
+        <button
+          onClick={openProjectRepository}
+          className={iconButtonClassName}
+          title="打开项目 GitHub 仓库"
+          aria-label="打开项目 GitHub 仓库"
+        >
+          <Github size={16} />
+        </button>
+
         <div className="view-switcher">
           {viewModes.map((mode) => (
             <button

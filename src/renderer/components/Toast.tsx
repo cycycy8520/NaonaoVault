@@ -25,7 +25,7 @@ const Toast = ({ message, type, onClose }: ToastProps) => {
   return (
     <div className="toast flex items-center gap-3">
       {icons[type]}
-      <span className="text-sm text-[var(--color-text-primary)]">{message}</span>
+      <span className="text-sm text-[var(--color-text-primary)] whitespace-pre-line">{message}</span>
       <button
         onClick={onClose}
         className="

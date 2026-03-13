@@ -205,7 +205,7 @@ const RecordModal = () => {
   };
 
   return (
-    <div className="modal-overlay" onClick={closeRecordModal}>
+    <div className="modal-overlay">
       <div
         className="
           w-full max-w-2xl max-h-[90vh]

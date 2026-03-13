@@ -96,7 +96,7 @@ const AssistantModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-[var(--z-modal)]" onClick={closeAssistant}>
+    <div className="fixed inset-0 z-[var(--z-modal)]">
       <div className="absolute inset-0 bg-black/20 backdrop-blur-[2px]" />
       <aside
         className="absolute right-0 top-0 h-full w-full max-w-xl bg-[var(--color-bg-elevated)] border-l border-[var(--color-border)] shadow-[var(--shadow-xl)] animate-slideDown"

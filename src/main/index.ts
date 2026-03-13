@@ -593,7 +593,7 @@ async function initializeServices(): Promise<void> {
   vaultService = new VaultService(db, cryptoService);
   backupService = new BackupService(vaultService);
   aiService = new AIService(vaultService);
-  gitSyncService = new GitSyncService(vaultService, backupService);
+  gitSyncService = new GitSyncService(vaultService, backupService, userDataPath);
   writeStartupLog('Application services initialized');
 }
 

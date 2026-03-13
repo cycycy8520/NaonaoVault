@@ -1,4 +1,4 @@
-import { AlertTriangle } from 'lucide-react'
+import { AlertTriangle, X } from 'lucide-react'
 import { useStore } from '../store'
 
 const DeleteConfirm = () => {
@@ -26,9 +26,10 @@ const DeleteConfirm = () => {
   }
   
   return (
-    <div className="modal-overlay" onClick={closeDeleteConfirm}>
+    <div className="modal-overlay">
       <div 
         className="
+          relative
           w-full max-w-sm
           bg-[var(--color-bg-elevated)]
           rounded-[var(--radius-xl)]
@@ -38,6 +39,20 @@ const DeleteConfirm = () => {
         "
         onClick={(e) => e.stopPropagation()}
       >
+        <button
+          onClick={closeDeleteConfirm}
+          className="
+            absolute top-4 right-4
+            w-8 h-8 flex items-center justify-center
+            rounded-[var(--radius-sm)]
+            text-[var(--color-text-secondary)]
+            hover:bg-[var(--color-bg-secondary)]
+            transition-colors duration-200
+          "
+          aria-label="关闭删除确认"
+        >
+          <X size={18} />
+        </button>
         {/* Content */}
         <div className="p-6 text-center">
           <div 
